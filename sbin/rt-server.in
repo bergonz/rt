@@ -57,6 +57,28 @@ line, or remove the PerlTaintCheck parameter from your mod_perl
 configuration.
 EOT
 
+    my $handler;
+    # Plack::Handler::Apache2 masks MOD_PERL, so use MOD_PERL_API_VERSION
+    if( $ENV{MOD_PERL_API_VERSION}
+        and $ENV{MOD_PERL_API_VERSION} == 2){
+
+        eval{
+            require Apache2::RequestRec;
+            $handler = Apache2::RequestRec->handler();
+        };
+    }
+
+    die <<MODPERL if defined $handler && $handler eq 'perl-script';
+RT has problems when SetHandler is set to perl-script.
+Change SetHandler in your in httpd.conf to:
+
+    SetHandler modperl
+
+For a complete example mod_perl configuration, see:
+
+https://bestpractical.com/rt/docs/@{[$RT::VERSION =~ /^(\d\.\d)/]}/web_deployment.html#mod_perl-2.xx
+MODPERL
+
     require File::Spec;
     my @libs = ("@RT_LIB_PATH@", "@LOCAL_LIB_PATH@");
     my $bin_path;
