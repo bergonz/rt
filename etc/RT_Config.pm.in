@@ -937,6 +937,16 @@ RealName and EmailAddress.
 
 Set($UsernameFormat, "concise");
 
+=item C<@UserSummaryPortlets>
+
+A list of portlets to be displayed on the User Summary page.
+By default, we show all of the available portlets.
+Extensions may provide their own portlets for this page.
+
+=cut
+
+Set(@UserSummaryPortlets, (qw/ExtraInfo ActiveTickets InactiveTickets/));
+
 =item C<$WebBaseURL>, C<$WebURL>
 
 Usually you don't want to set these options. The only obvious reason
