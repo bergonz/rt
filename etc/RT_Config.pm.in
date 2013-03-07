@@ -960,6 +960,20 @@ Extensions may provide their own portlets for this page.
 
 Set(@UserSummaryPortlets, (qw/ExtraInfo ActiveTickets InactiveTickets/));
 
+=item C<$UserSummaryTicketListFormat>
+
+Control the appearance of the Active and Inactive ticket lists in the
+User Summary.
+
+=cut
+
+Set($UserSummaryTicketListFormat, q{
+       '<a href="__WebPath__/Ticket/Display.html?id=__id__">__id__</a>',
+       '(__OwnerName__)',
+       '<a href="__WebPath__/Ticket/Display.html?id=__id__">__Subject__</a>',
+       '__Status__',
+});
+
 =item C<$WebBaseURL>, C<$WebURL>
 
 Usually you don't want to set these options. The only obvious reason
