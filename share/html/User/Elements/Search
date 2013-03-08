@@ -95,7 +95,7 @@ return $users;
 </%INIT>
 <%ARGS>
 $privileged => undef
-$fields => RT->Config->Get('UserAutocompleteFields')
+$fields => RT->Config->Get('UserSearchFields')
 $term => undef
 $exclude => ''
 $return => undef

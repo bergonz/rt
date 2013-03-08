@@ -88,7 +88,7 @@ my $users = $m->comp('/User/Elements/Search', return => 'Name', term => $UserStr
 
 my $Format = RT->Config->Get('UserSummaryFormat');
 
-my $search_fields = join ", ", map loc($_), keys %{RT->Config->Get('UserAutocompleteFields')};
+my $search_fields = join ", ", map loc($_), keys %{RT->Config->Get('UserSearchFields')};
 
 </%INIT>
 <%ARGS>
