@@ -76,7 +76,7 @@ delete $params{Ticket};
 
 my $url = JSON::to_json(
     RT->Config->Get('WebPath') . "/Helpers/TicketHistory?".
-        $m->comp('/Elements/QueryString', %params, id => $Ticket->id ),
+        $m->comp('/Elements/QueryString', %params, id => $Ticket->id, time => Time::HiRes::time()),
     { allow_nonref => 1 }
 );
 </%INIT>
