@@ -775,9 +775,10 @@ our %META = (
         },
         PostLoadCheck => sub {
             my $self = shift;
-            # XXX: deprecated, remove in 4.4
-            $RT::Logger->info("You set \$LogToScreen in your config, but it's been renamed to \$LogToSTDERR.  Please update your config.")
-                if $self->Meta('LogToScreen')->{'Source'}{'Package'};
+            RT->Deprecated(
+                Message => "You set \$LogToScreen in your config, but it's been renamed to \$LogToSTDERR.  Please update your config.",
+                Remove => "4.4"
+            ) if $self->Meta('LogToScreen')->{'Source'}{'Package'};
         },
     },
     UserAutocompleteFields => {
