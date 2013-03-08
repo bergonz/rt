@@ -51,6 +51,27 @@
 <& /Elements/GotoUser, Button => 1, Default => $UserString||'' &>
 <p> <&|/l&>This will search for users by looking in the following fields:</&> <% $search_fields %></p>
 
+% if ($UserString) {
+
+% unless ( $users->Count ) {
+<p><&|/l&>No users matching search criteria found.</&></p>
+% } else {
+<p><&|/l&>Select a user</&>:</p>
+
+<& /Elements/CollectionList,
+    OrderBy => 'Name',
+    Order => 'ASC',
+    Rows  => 100,
+    %ARGS,
+    Format => $Format,
+    Collection => $users,
+    AllowSorting => 1,
+    PassArguments => [qw(Format Rows Page Order OrderBy q)],
+&>
+
+% }
+% }
+
 <%INIT>
 
 if ($UserName) {
@@ -62,6 +83,11 @@ if ($UserName) {
         RT->Logger->error("Unable to load $UserName: $msg");
     }
 }
+
+my $users = $m->comp('/User/Elements/Search', return => 'Name', term => $UserString);
+
+my $Format = RT->Config->Get('UserSummaryFormat');
+
 my $search_fields = join ", ", map loc($_), keys %{RT->Config->Get('UserAutocompleteFields')};
 
 </%INIT>
