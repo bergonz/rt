@@ -972,7 +972,7 @@ Extensions may provide their own portlets for this page.
 
 =cut
 
-Set(@UserSummaryPortlets, (qw/ExtraInfo ActiveTickets InactiveTickets/));
+Set(@UserSummaryPortlets, (qw/ExtraInfo CreateTicket ActiveTickets InactiveTickets/));
 
 =item C<$UserSummaryTicketListFormat>
 
