@@ -48,7 +48,7 @@
 <& /Elements/Header, Title => loc('User Search') &>
 <& /Elements/Tabs &>
     
-<& /Elements/GotoUser, Button => 1 &>
+<& /Elements/GotoUser, Button => 1, Default => $UserString||'' &>
 <p> <&|/l&>This will search for users by looking in the following fields:</&> <% $search_fields %></p>
 
 <%INIT>

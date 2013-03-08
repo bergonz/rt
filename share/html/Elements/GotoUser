@@ -46,7 +46,7 @@
 %#
 %# END BPS TAGGED BLOCK }}}
 <form name="UserSearch" method="post" action="<% RT->Config->Get('WebPath') %>/User/Search.html">
-<input type="text" name="UserString" value="" id="autocomplete-UserString" />
+<input type="text" name="UserString" value="<% $Default %>" id="autocomplete-UserString" />
 <input type="hidden" name="UserName" value="">
 <script type="text/javascript">
 jQuery(function(){
@@ -68,5 +68,6 @@ jQuery(function(){
 % }
 </form>
 <%ARGS>
-$Button => undef,
+$Button  => undef
+$Default => ''
 </%ARGS>
